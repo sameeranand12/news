@@ -33,10 +33,20 @@ class _HomePageState extends State<HomePage> {
                   var article = snapshot.data!.articles[index]; 
                   return Container(
                     height: 100,
-                    child: Row(children: [
-                      Image.network('article.urlToImage'),
-                    ],),
-                    color: Colors.tealAccent,
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      
+                       
+                      child: AspectRatio(
+                        aspectRatio: ,
+                        child: Image.network(article.urlToImage,
+                        fit: BoxFit.cover,
+                        ),),
+                      color: Colors.tealAccent,
+                    ),
                   );
                 },
               );
