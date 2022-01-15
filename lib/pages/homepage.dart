@@ -26,6 +26,8 @@ class _HomePageState extends State<HomePage> {
           future: _newsModel,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+
+              print('ubascuab');
               return ListView.builder(
                 
                 itemCount: snapshot.data!.articles.length,
@@ -33,19 +35,41 @@ class _HomePageState extends State<HomePage> {
                   var article = snapshot.data!.articles[index]; 
                   return Container(
                     height: 100,
-                    child: Card(
-                      clipBehavior: Clip.antiAlias,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      
-                       
-                      child: AspectRatio(
-                        aspectRatio: ,
-                        child: Image.network(article.urlToImage,
-                        fit: BoxFit.cover,
-                        ),),
-                      color: Colors.tealAccent,
+                    margin: const EdgeInsets.all(8),
+                    child: Row(
+                      children: [
+                        Card(
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          
+                           
+                          child: AspectRatio(
+                            aspectRatio: 1,
+                            child: Image.network(article.urlToImage,
+                            fit: BoxFit.cover,
+                            ),),
+                         // color: Colors.tealAccent,
+                        ),
+                        SizedBox(width: 16),
+                        Flexible(child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(article.title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight : FontWeight.bold,
+                            ),
+                            ),
+                            Text( article.description,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                          ],
+                        ),)
+                      ],
                     ),
                   );
                 },
